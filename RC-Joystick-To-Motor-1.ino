@@ -2,7 +2,7 @@
 const int x_max = 530;
 const int x_nominal = 489;
 const int x_min = -480;
- 
+
 const int y_max = 490;
 const int y_nominal = 526;
 const int y_min = -520;
