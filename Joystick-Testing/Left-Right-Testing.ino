@@ -11,12 +11,6 @@ const int y_max = 490;
 const int y_nominal = 526;
 const int y_min = -520;
 
-const int Motor1Pin1 = 2;   // Left Wheel
-const int Motor1Pin2 = 3;
-const int Motor2Pin1 = 4;   // Right Wheel
-const int Motor2Pin2 = 5;
-
-
 void setup() {
   // put your setup code here, to run once:
   pinMode(22, INPUT);
