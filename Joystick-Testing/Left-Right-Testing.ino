@@ -64,7 +64,7 @@ void loop() {
 
   if (x_input > 0)
   {
-    servoPos = int(90*abs(x_input/double(x_max)));
+    servoPos = int(45*abs(x_input/double(x_max)));
 
     myServo.write(90+servoPos);
     
@@ -75,7 +75,7 @@ void loop() {
   }
   else if (x_input < 0)
   {
-    servoPos = int(90*abs(x_input/double(x_min)));
+    servoPos = int(45*abs(x_input/double(x_min)));
 
     myServo.write(90-servoPos);
     
