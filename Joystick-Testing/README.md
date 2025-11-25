@@ -1,7 +1,8 @@
 # Joystick-Testing
 
-Joystick-Output-Testing.ino has my process of learning how the outputs of the Arduino joystick function and can be recorded.
+This repository contains all my work for understanding how the Arduino joystick functions and how it can be used to control the RC car. The car is controlled as rear wheel drive and front wheel steer. The programs in this repository have not taken into account how the outermost wheel in a turn spins more than the innermost wheel. That is the next step in the creation of the RC car, and will be put in a different repository.
 
+Joystick-Output-Testing.ino has my process of learning how the outputs of the Arduino joystick function and can be recorded.
 
 Forward-Backward-Testing.ino has my process for learning how to control the motor power using Pulse Width Modulation based on the joystick. The percentage forward or reverse on the joystick is the duty cycle for the PWM. The motor is attached to digital out pins 2 and 3 on the Arduino MEGA. When the joystick is in the forward position, pin 2 is set LOW and pin 3 is set as the PWM. When the joystick is in the reverse direction, pin 3 is set LOW and pin 2 is set as the PWM. The same thing occurs for the second motor attached to pins 4 and 5.
 
