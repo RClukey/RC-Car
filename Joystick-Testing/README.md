@@ -9,3 +9,5 @@ Forward-Backward-Testing.ino has my process for learning how to control the moto
 Left-Right-Testing.ino has my process for learning how to control the left/right motion of the RC car. The servo that controls the direction of the front wheels is at 90 degrees when straight ahead, 45 degrees when at it's full left, and 135 degrees when at it's full right.
 
 Full-Joystick-Testing.ino has all my work from the previous programs together in one code to test the full function of the RC car's drive train.
+
+The images included in this repository show my initial wiring of the Arduino to control the RC car. Joystick-Testing-Electronics.jpg shows the full image of the Arduino and surrounding electronics, while Joystick-Testing-Arduino.jpg shows a close up of just the Arduino wiring. The joystick on the bottom left is what controls the stepper motors and servo motor. The stepper motor on the bottom right drives the rear wheels. In this image, there is only one stepper motor because I do not have another. The servo motor on the top right controls the turning of the front wheels and the overall direction of the car.
