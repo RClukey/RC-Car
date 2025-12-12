@@ -2,13 +2,16 @@
 
 Servo myServo;
 int servoPos;
+double pwm;
+int x_input, y_input, switch_input;
+bool cruise = false;
 
-const int x_max = 530;
-const int x_nominal = 489;
+const int x_max = 540;
+const int x_nominal = 480;
 const int x_min = -480;
 
-const int y_max = 490;
-const int y_nominal = 526;
+const int y_max = 500;
+const int y_nominal = 520;
 const int y_min = -520;
 
 const int Motor1Pin1 = 2;   // Left Wheel
@@ -39,29 +42,51 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  int switch_input = digitalRead(22);
-  int x_input = (analogRead(A0) - x_nominal) / 10;
-  x_input *= 10;
-  int y_input = (analogRead(A1) - y_nominal) / 10;
-  y_input *= 10;
+  if (!cruise)
+  {
+    // put your main code here, to run repeatedly:
+    switch_input = digitalRead(22);
+    x_input = (analogRead(A0) - x_nominal) / 20;
+    x_input *= 20;
+    y_input = (analogRead(A1) - y_nominal) / 20;
+    y_input *= 20;
 
-  Serial.print("Switch: ");
-  Serial.print(switch_input);
+    if (switch_input)
+    {
+      digitalWrite(13, LOW);
+    }
+    if (!switch_input)
+    {
+      digitalWrite(13, HIGH);
+      cruise = true;
+    }
+  }
+  else
+  {
+    switch_input = digitalRead(22);
+    if (!switch_input)
+    {
+      digitalWrite(13, LOW);
+      cruise = false;
+
+      x_input = (analogRead(A0) - x_nominal) / 20;
+      x_input *= 20;
+      y_input = (analogRead(A1) - y_nominal) / 20;
+      y_input *= 20;
+    }
+  }
+
+  Serial.print("Cruise Control: ");
+  Serial.print(cruise);
   Serial.print("\n");
 
   Serial.print("X-axis: ");
   Serial.print(x_input);
   Serial.print("\n");
-  
+    
   Serial.print("Y-axis: ");
   Serial.print(y_input);
   Serial.print("\n");
-
-  if (switch_input) { digitalWrite(13, LOW); }
-  if (!switch_input) { digitalWrite(13, HIGH); }
-
-  double pwm = 0.00;
 
   if (y_input > 0)
   {
@@ -101,23 +126,23 @@ void loop() {
     Serial.print("Stop\n");
   }
 
-  if (x_input > 0)
+  if (x_input < 0)
   {
     servoPos = int(90*abs(x_input/double(x_max)));
 
     myServo.write(90+servoPos);
-    
+      
     Serial.print("Angle: ");
     Serial.print(90+servoPos);
     Serial.print("\n");
     Serial.print("Right\n");
   }
-  else if (x_input < 0)
+  else if (x_input > 0)
   {
     servoPos = int(90*abs(x_input/double(x_min)));
 
     myServo.write(90-servoPos);
-    
+      
     Serial.print("Angle: ");
     Serial.print(90-servoPos);
     Serial.print("\n");
@@ -125,6 +150,7 @@ void loop() {
   }
   else
   {
+    myServo.write(90);
     Serial.print("Straight\n");
   }
 
